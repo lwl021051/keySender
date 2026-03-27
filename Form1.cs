@@ -306,6 +306,17 @@ namespace KeySenderApp
                     case ' ':
                         sim.Keyboard.KeyPress(VirtualKeyCode.SPACE);
                         break;
+                    case '<':
+                        sim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
+                        sim.Keyboard.KeyPress(VirtualKeyCode.OEM_COMMA); // Shift + , = <
+                        sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
+                        break;
+
+                    case '>':
+                        sim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
+                        sim.Keyboard.KeyPress(VirtualKeyCode.OEM_PERIOD); // Shift + . = >
+                        sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
+                        break;
                 }
             }
         }
