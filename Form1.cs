@@ -18,7 +18,7 @@ namespace KeySenderApp
         bool isRunning = false;
         bool isStopped = false;
 
-        InputSimulator sim = new InputSimulator(); // InputSimulatorPlus instance
+        InputSimulator sim = new InputSimulator();
 
         public Form1()
         {
@@ -120,6 +120,7 @@ namespace KeySenderApp
         {
             isPaused = !isPaused;
             pauseButton.Text = isPaused ? "Resume" : "Pause";
+            statusLabel.Text = isPaused ? "Paused ⏸️" : "Running...";
         }
 
         private void StopButton_Click(object sender, EventArgs e)
@@ -167,7 +168,7 @@ namespace KeySenderApp
             foreach (var line in lines)
             {
                 string trimmed = line.Trim();
-                if (trimmed.StartsWith("//")) continue; // Ignore comments
+                if (trimmed.StartsWith("//")) continue;
                 result.Add(line);
             }
 
@@ -176,26 +177,18 @@ namespace KeySenderApp
 
         private async Task SendLine(string line, int delay)
         {
-            var words = line.Split(' ');
-            foreach (var word in words)
+            foreach (char c in line)
             {
-                foreach (char c in word)
-                {
-                    while (isPaused)
-                        await Task.Delay(100);
+                while (isPaused)
+                    await Task.Delay(100);
 
-                    SendChar(c);
-                    await Task.Delay(delay);
-                }
-
-                // Send a space after each word
-                sim.Keyboard.KeyPress(VirtualKeyCode.SPACE);
+                sim.Keyboard.TextEntry(c); // ✅ Handles ALL characters
                 await Task.Delay(delay);
 
                 if (isStopped) return;
             }
 
-            // Press Enter at the end of each line
+            // Press Enter after each line
             sim.Keyboard.KeyPress(VirtualKeyCode.RETURN);
             await Task.Delay(delay * 2);
         }
@@ -208,46 +201,6 @@ namespace KeySenderApp
                 int lineIndex = inputBox.GetLineFromCharIndex(start);
                 int lineStart = inputBox.GetFirstCharIndexFromLine(lineIndex);
                 inputBox.Text = inputBox.Text.Insert(lineStart, "//");
-            }
-        }
-
-        private void SendChar(char c)
-        {
-            // Map letters, numbers
-            if (c >= 'a' && c <= 'z')
-            {
-                sim.Keyboard.KeyPress((VirtualKeyCode)((int)VirtualKeyCode.VK_A + (c - 'a')));
-            }
-            else if (c >= 'A' && c <= 'Z')
-            {
-                sim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
-                sim.Keyboard.KeyPress((VirtualKeyCode)((int)VirtualKeyCode.VK_A + (c - 'A')));
-                sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
-            }
-            else if (c >= '0' && c <= '9')
-            {
-                sim.Keyboard.KeyPress((VirtualKeyCode)((int)VirtualKeyCode.VK_0 + (c - '0')));
-            }
-            else
-            {
-                // Add other symbols as needed
-                switch (c)
-                {
-                    case '.': sim.Keyboard.KeyPress(VirtualKeyCode.OEM_PERIOD); break;
-                    case ',': sim.Keyboard.KeyPress(VirtualKeyCode.OEM_COMMA); break;
-                    case '-': sim.Keyboard.KeyPress(VirtualKeyCode.OEM_MINUS); break;
-                    case '_':
-                        sim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
-                        sim.Keyboard.KeyPress(VirtualKeyCode.OEM_MINUS);
-                        sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
-                        break;
-                    case '@':
-                        sim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
-                        sim.Keyboard.KeyPress(VirtualKeyCode.VK_2);
-                        sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
-                        break;
-                    // Add more symbols as needed
-                }
             }
         }
     }
