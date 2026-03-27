@@ -1,6 +1,6 @@
 # KeySenderApp
 
-A simple **C# Key Sender Tool** for automating key input in **vSphere HTML5 Client** or any other application. Designed for programmers and vSphere users who need to automate repetitive text/commands.
+A simple **C# Key Sender Tool** for automating key input in **vSphere HTML5 Client** or any other application. Designed for **programmers** and **vSphere users** who need to automate repetitive text or commands.
 
 ---
 
@@ -11,13 +11,17 @@ A simple **C# Key Sender Tool** for automating key input in **vSphere HTML5 Clie
 - **Pause**, **Resume**, and **Stop** functionality.
 - Compatible with **vSphere HTML5 Console** (Canvas-based).
 - Uses **InputSimulatorPlus** to simulate physical keypresses.
+- Supports script comments using `//` at the start of a line.
 
 ---
 
 ## Installation
 
-1. Clone the repository:
+### Visual Studio
 
-```bash
-git clone git@github.com:lwl021051/keySender.git
-cd keySender
+1. Open the solution in **Visual Studio**.
+2. Open **Tools → NuGet Package Manager → Package Manager Console**.
+3. Install InputSimulatorPlus:
+
+```powershell
+Install-Package InputSimulatorPlus
