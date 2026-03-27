@@ -21,7 +21,8 @@ A simple **C# Key Sender Tool** for automating key input in **vSphere HTML5 Clie
 
 1. Open the solution in **Visual Studio**.
 2. Open **Tools → NuGet Package Manager → Package Manager Console**.
-3. Install InputSimulatorPlus:
+3. Install-Package InputSimulatorPlus
 
-```powershell
-Install-Package InputSimulatorPlus
+### Vs Code
+
+1. dotnet add package InputSimulatorPlus
