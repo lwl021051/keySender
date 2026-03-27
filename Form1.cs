@@ -18,7 +18,7 @@ namespace KeySenderApp
         bool isRunning = false;
         bool isStopped = false;
 
-        InputSimulator sim = new InputSimulator();
+        InputSimulator sim = new InputSimulator(); // InputSimulatorPlus instance
 
         public Form1()
         {
@@ -120,7 +120,6 @@ namespace KeySenderApp
         {
             isPaused = !isPaused;
             pauseButton.Text = isPaused ? "Resume" : "Pause";
-            statusLabel.Text = isPaused ? "Paused ⏸️" : "Running...";
         }
 
         private void StopButton_Click(object sender, EventArgs e)
@@ -168,7 +167,7 @@ namespace KeySenderApp
             foreach (var line in lines)
             {
                 string trimmed = line.Trim();
-                if (trimmed.StartsWith("//")) continue;
+                if (trimmed.StartsWith("//")) continue; // Ignore comments
                 result.Add(line);
             }
 
@@ -177,18 +176,26 @@ namespace KeySenderApp
 
         private async Task SendLine(string line, int delay)
         {
-            foreach (char c in line)
+            var words = line.Split(' ');
+            foreach (var word in words)
             {
-                while (isPaused)
-                    await Task.Delay(100);
+                foreach (char c in word)
+                {
+                    while (isPaused)
+                        await Task.Delay(100);
 
-                sim.Keyboard.TextEntry(c); // ✅ Handles ALL characters
+                    SendChar(c);
+                    await Task.Delay(delay);
+                }
+
+                // Send a space after each word
+                sim.Keyboard.KeyPress(VirtualKeyCode.SPACE);
                 await Task.Delay(delay);
 
                 if (isStopped) return;
             }
 
-            // Press Enter after each line
+            // Press Enter at the end of each line
             sim.Keyboard.KeyPress(VirtualKeyCode.RETURN);
             await Task.Delay(delay * 2);
         }
@@ -201,6 +208,105 @@ namespace KeySenderApp
                 int lineIndex = inputBox.GetLineFromCharIndex(start);
                 int lineStart = inputBox.GetFirstCharIndexFromLine(lineIndex);
                 inputBox.Text = inputBox.Text.Insert(lineStart, "//");
+            }
+        }
+
+        private void SendChar(char c)
+        {
+            if (c >= 'a' && c <= 'z')
+            {
+                sim.Keyboard.KeyPress((VirtualKeyCode)((int)VirtualKeyCode.VK_A + (c - 'a')));
+            }
+            else if (c >= 'A' && c <= 'Z')
+            {
+                sim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
+                sim.Keyboard.KeyPress((VirtualKeyCode)((int)VirtualKeyCode.VK_A + (c - 'A')));
+                sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
+            }
+            else if (c >= '0' && c <= '9')
+            {
+                sim.Keyboard.KeyPress((VirtualKeyCode)((int)VirtualKeyCode.VK_0 + (c - '0')));
+            }
+            else
+            {
+                switch (c)
+                {
+                    case '.': sim.Keyboard.KeyPress(VirtualKeyCode.OEM_PERIOD); break;
+                    case ',': sim.Keyboard.KeyPress(VirtualKeyCode.OEM_COMMA); break;
+                    case '-': sim.Keyboard.KeyPress(VirtualKeyCode.OEM_MINUS); break;
+
+                    case '_':
+                        sim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
+                        sim.Keyboard.KeyPress(VirtualKeyCode.OEM_MINUS);
+                        sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
+                        break;
+
+                    case '@':
+                        sim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
+                        sim.Keyboard.KeyPress(VirtualKeyCode.VK_2);
+                        sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
+                        break;
+
+                    // ✅ ADD THESE ↓↓↓
+
+                    case '"':
+                        sim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
+                        sim.Keyboard.KeyPress(VirtualKeyCode.OEM_7); // "
+                        sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
+                        break;
+
+                    case '=':
+                        sim.Keyboard.KeyPress(VirtualKeyCode.OEM_PLUS);
+                        break;
+
+                    case ':':
+                        sim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
+                        sim.Keyboard.KeyPress(VirtualKeyCode.OEM_1);
+                        sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
+                        break;
+
+                    case '/':
+                        sim.Keyboard.KeyPress(VirtualKeyCode.OEM_2);
+                        break;
+
+                    case '\\':
+                        sim.Keyboard.KeyPress(VirtualKeyCode.OEM_5);
+                        break;
+
+                    case '?':
+                        sim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
+                        sim.Keyboard.KeyPress(VirtualKeyCode.OEM_2);
+                        sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
+                        break;
+
+                    case '&':
+                        sim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
+                        sim.Keyboard.KeyPress(VirtualKeyCode.VK_7);
+                        sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
+                        break;
+
+                    case '%':
+                        sim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
+                        sim.Keyboard.KeyPress(VirtualKeyCode.VK_5);
+                        sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
+                        break;
+
+                    case '#':
+                        sim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
+                        sim.Keyboard.KeyPress(VirtualKeyCode.VK_3);
+                        sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
+                        break;
+
+                    case '+':
+                        sim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
+                        sim.Keyboard.KeyPress(VirtualKeyCode.OEM_PLUS);
+                        sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
+                        break;
+
+                    case ' ':
+                        sim.Keyboard.KeyPress(VirtualKeyCode.SPACE);
+                        break;
+                }
             }
         }
     }
