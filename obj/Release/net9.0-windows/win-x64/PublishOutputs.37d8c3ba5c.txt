@@ -1,0 +1,2 @@
+C:\develop\tools\KeySenderApp\bin\Release\net9.0-windows\win-x64\publish\KeySenderApp.pdb
+C:\develop\tools\KeySenderApp\bin\Release\net9.0-windows\win-x64\publish\KeySenderApp.exe
