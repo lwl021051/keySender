@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\develop\\tools\\keySender\\KeySenderApp.csproj": {}
+    "C:\\develop\\tools\\KeySenderApp\\KeySenderApp.csproj": {}
   },
   "projects": {
-    "C:\\develop\\tools\\keySender\\KeySenderApp.csproj": {
+    "C:\\develop\\tools\\KeySenderApp\\KeySenderApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\develop\\tools\\keySender\\KeySenderApp.csproj",
+        "projectUniqueName": "C:\\develop\\tools\\KeySenderApp\\KeySenderApp.csproj",
         "projectName": "KeySenderApp",
-        "projectPath": "C:\\develop\\tools\\keySender\\KeySenderApp.csproj",
+        "projectPath": "C:\\develop\\tools\\KeySenderApp\\KeySenderApp.csproj",
         "packagesPath": "C:\\Users\\peter\\.nuget\\packages\\",
-        "outputPath": "C:\\develop\\tools\\keySender\\obj\\",
+        "outputPath": "C:\\develop\\tools\\KeySenderApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\peter\\AppData\\Roaming\\NuGet\\NuGet.Config"

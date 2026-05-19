@@ -278,3 +278,4 @@ C:\develop\tools\KeySenderApp\obj\Release\net9.0-windows\win-x64\KeySenderApp.ge
 C:\develop\tools\KeySenderApp\obj\Release\net9.0-windows\win-x64\ref\KeySenderApp.dll
 C:\develop\tools\KeySenderApp\bin\Release\net9.0-windows\win-x64\WindowsInput.dll
 C:\develop\tools\KeySenderApp\obj\Release\net9.0-windows\win-x64\KeySenderApp.csproj.AssemblyReference.cache
+C:\develop\tools\KeySenderApp\obj\Release\net9.0-windows\win-x64\KeySenderApp.sourcelink.json

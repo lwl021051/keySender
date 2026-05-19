@@ -558,3 +558,4 @@ C:\develop\tools\keySender\obj\Debug\net9.0-windows\win-x64\refint\KeySenderApp.
 C:\develop\tools\keySender\obj\Debug\net9.0-windows\win-x64\KeySenderApp.pdb
 C:\develop\tools\keySender\obj\Debug\net9.0-windows\win-x64\KeySenderApp.genruntimeconfig.cache
 C:\develop\tools\keySender\obj\Debug\net9.0-windows\win-x64\ref\KeySenderApp.dll
+C:\develop\tools\KeySenderApp\obj\Debug\net9.0-windows\win-x64\KeySenderApp.sourcelink.json

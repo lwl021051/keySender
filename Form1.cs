@@ -302,7 +302,6 @@ namespace KeySenderApp
                         sim.Keyboard.KeyPress(VirtualKeyCode.OEM_PLUS);
                         sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
                         break;
-
                     case ' ':
                         sim.Keyboard.KeyPress(VirtualKeyCode.SPACE);
                         break;
@@ -311,10 +310,74 @@ namespace KeySenderApp
                         sim.Keyboard.KeyPress(VirtualKeyCode.OEM_COMMA); // Shift + , = <
                         sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
                         break;
-
                     case '>':
                         sim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
                         sim.Keyboard.KeyPress(VirtualKeyCode.OEM_PERIOD); // Shift + . = >
+                        sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
+                        break;
+                    case '|':
+                        sim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
+                        sim.Keyboard.KeyPress(VirtualKeyCode.OEM_5); // Shift + \ = |
+                        sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
+                        break;
+                    case '!':
+                        sim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
+                        sim.Keyboard.KeyPress(VirtualKeyCode.VK_1);
+                        sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
+                        break;
+                    case '(':
+                        sim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
+                        sim.Keyboard.KeyPress(VirtualKeyCode.VK_9);
+                        sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
+                        break;
+                    case ')':
+                        sim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
+                        sim.Keyboard.KeyPress(VirtualKeyCode.VK_0);
+                        sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
+                        break;
+                    case '{':
+                        sim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
+                        sim.Keyboard.KeyPress(VirtualKeyCode.OEM_4); // [
+                        sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
+                        break;
+                    case '}':
+                        sim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
+                        sim.Keyboard.KeyPress(VirtualKeyCode.OEM_6); // ]
+                        sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
+                        break;
+                    case '[':
+                        sim.Keyboard.KeyPress(VirtualKeyCode.OEM_4);
+                        break;
+                    case ']':
+                        sim.Keyboard.KeyPress(VirtualKeyCode.OEM_6);
+                        break;
+                    case ';':
+                        sim.Keyboard.KeyPress(VirtualKeyCode.OEM_1);
+                        break;
+                    case '\'':
+                        sim.Keyboard.KeyPress(VirtualKeyCode.OEM_7);
+                        break;
+                    case '~':
+                        sim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
+                        sim.Keyboard.KeyPress(VirtualKeyCode.OEM_3);
+                        sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
+                        break;
+                    case '`':
+                        sim.Keyboard.KeyPress(VirtualKeyCode.OEM_3);
+                        break;
+                    case '*':
+                        sim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
+                        sim.Keyboard.KeyPress(VirtualKeyCode.VK_8);
+                        sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
+                        break;
+                    case '^':
+                        sim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
+                        sim.Keyboard.KeyPress(VirtualKeyCode.VK_6);
+                        sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
+                        break;
+                    case '$':
+                        sim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
+                        sim.Keyboard.KeyPress(VirtualKeyCode.VK_4);
                         sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
                         break;
                 }

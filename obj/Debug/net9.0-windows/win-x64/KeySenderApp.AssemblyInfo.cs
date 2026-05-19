@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KeySenderApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4d04f83ea197b24bcb8ce36a4fca6adc91b33173")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c5afa38b8fba587138eaaa3f6609e2479cd5aa8d")]
 [assembly: System.Reflection.AssemblyProductAttribute("KeySenderApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KeySenderApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
